@@ -30,8 +30,7 @@ fn get_pos_sol(matrix: &Conventional<i32>, pos: &Point) -> Vec<Point> {
         let inw = pos.0 + i;
         let jnw = pos.1 + j;
         if inw >= 0 && inw < rows && jnw >= 0 && jnw < cols {
-            let mut res = Vec::with_capacity(acc.len());
-            res.extend_from_slice(&acc);
+            let mut res = acc.clone();
             res.push((inw, jnw));
             res
         } else {
@@ -50,8 +49,7 @@ fn search_for_pos(matrix: &Conventional<i32>, pos: &Point, depth: i32, max_depth
     let solutions = get_pos_sol(matrix, pos);
     let children: Vec<Node> = solutions.iter().fold(vec![], |acc, next| {
         let inner_children = search_for_pos(matrix, next, depth + 1, max_depth);
-        let mut res = Vec::with_capacity(acc.len());
-        res.extend_from_slice(&acc);
+        let mut res = acc.clone();
         res.push(inner_children);
         res
     });
@@ -63,8 +61,7 @@ fn search_for_pos(matrix: &Conventional<i32>, pos: &Point, depth: i32, max_depth
 }
 
 fn rec_build(matrix: &Conventional<i32>, res: &mut Vec<Vec<i32>>, elem: Node, acc: &Vec<i32>) {
-    let mut copied = Vec::with_capacity(acc.len());
-    copied.extend_from_slice(acc);
+    let mut copied = acc.clone();
     let posi = (elem.point.0 as usize, elem.point.1 as usize);
     let val = matrix[posi];
     copied.push(val);
