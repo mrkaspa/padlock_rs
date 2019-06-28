@@ -10,8 +10,7 @@ struct Node {
     children: Vec<Node>,
 }
 
-fn moves() -> Vec<Point> {
-    vec![
+const MOVES : [Point; 8] = [
         (2, 1),
         (-2, 1),
         (2, -1),
@@ -20,13 +19,12 @@ fn moves() -> Vec<Point> {
         (1, -2),
         (-1, 2),
         (-1, -2),
-    ]
-}
+    ];
 
 fn get_pos_sol(matrix: &Conventional<i32>, pos: &Point) -> Vec<Point> {
     let rows: i32 = matrix.rows as i32;
     let cols: i32 = matrix.columns as i32;
-    moves().iter().fold(vec![], |acc, (i, j)| {
+    MOVES.iter().fold(vec![], |acc, (i, j)| {
         let inw = pos.0 + i;
         let jnw = pos.1 + j;
         if inw >= 0 && inw < rows && jnw >= 0 && jnw < cols {
