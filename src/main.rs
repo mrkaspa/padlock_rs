@@ -10,16 +10,16 @@ struct Node {
     children: Vec<Node>,
 }
 
-const MOVES : [Point; 8] = [
-        (2, 1),
-        (-2, 1),
-        (2, -1),
-        (-2, -1),
-        (1, 2),
-        (1, -2),
-        (-1, 2),
-        (-1, -2),
-    ];
+const MOVES: [Point; 8] = [
+    (2, 1),
+    (-2, 1),
+    (2, -1),
+    (-2, -1),
+    (1, 2),
+    (1, -2),
+    (-1, 2),
+    (-1, -2),
+];
 
 fn get_pos_sol(matrix: &Conventional<i32>, pos: &Point) -> Vec<Point> {
     let rows: i32 = matrix.rows as i32;
